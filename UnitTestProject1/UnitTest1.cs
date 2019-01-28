@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WielomianNS;
+using MyMath;
 
 namespace UnitTestProject1
 {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace WielomianNS
+namespace MyMath
 {
     public sealed class Wielomian : IEnumerator<int>, IEnumerable<int>, IEquatable<Wielomian>
     {
@@ -15,6 +15,11 @@ namespace WielomianNS
         public int[] wspolczynniki { get;  }
 
         public int Stopien { get; }
+        
+        public static implicit operator Wielomian(int m)
+        {
+            return new Wielomian(m);
+        }
 
         public int Current
         {
@@ -35,7 +40,7 @@ namespace WielomianNS
             if (wsp == null)
                 throw new NullReferenceException();
             if (wsp.Length == 0)
-                throw new ArgumentException();
+                throw new ArgumentException("wielomian nie moze być pusty");
 
             int dlugosc = SprawdzZera(wsp)[0];
             int indeks = SprawdzZera(wsp)[1];
@@ -86,7 +91,7 @@ namespace WielomianNS
                     else if (stopien == 1)
                         str = str + SprawdzCzyJeden(Math.Abs(wspolczynniki[i]).ToString()) + "x";
                     else
-                        str = str + SprawdzCzyJeden(Math.Abs(wspolczynniki[i]).ToString());
+                        str = str + Math.Abs(wspolczynniki[i]).ToString();
                 }
                 stopien--;
             }
@@ -150,6 +155,8 @@ namespace WielomianNS
 
         public bool Equals(Wielomian other)
         {
+            if (other == null)
+                return false;
             if (this.wspolczynniki.Length != other.wspolczynniki.Length)
                 return false;
             for(int i = 0; i < this.wspolczynniki.Length; i++)
@@ -221,8 +228,7 @@ namespace WielomianNS
 
         public int this[int index]
         {
-            get{ return wspolczynniki[index]; }
-            set{ wspolczynniki[index] = value;}
+            get{ return wspolczynniki[wspolczynniki.Length - index - 1]; }
         }
     }
 }
