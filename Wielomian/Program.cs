@@ -81,12 +81,12 @@ namespace z2_1_wielomian
             Console.WriteLine($"({w22}) + ({w21}) = {w22 + w21}");
             Console.WriteLine($"({w21}) - ({w22}) = {w21 - w22}");
             Console.WriteLine($"({w22}) - ({w21}) = {w22 - w21}");
-            
+
             Console.WriteLine($"({w21}) + {10} = {w21 + 10}");
             Console.WriteLine($"{10} + ({w21}) = {10 + w21}");
             Console.WriteLine($"({w21}) - {10} = {w21 - 10}");
             Console.WriteLine($"{10} - ({w21}) = {10 - w21}");
-            
+
             Console.WriteLine("== Konwersje ==");
             /*
             Wielomian w = 10;  //konwersja domyślna z int na Wielomian

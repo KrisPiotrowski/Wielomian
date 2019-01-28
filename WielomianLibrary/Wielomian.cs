@@ -190,18 +190,20 @@ namespace MyMath
 
         public static Wielomian operator +(Wielomian w1, Wielomian w2)
         {
-            Wielomian wieksza = w1.wspolczynniki.Length > w2.wspolczynniki.Length ? w1 : w2;
-            Wielomian mniejsza = w1.wspolczynniki.Length > w2.wspolczynniki.Length ? w2 : w1;
+            Wielomian wieksza = WybierzWiekszaTablice(w1, w2)[0];
+            Wielomian mniejsza = WybierzWiekszaTablice(w1, w2)[1];
+
             int roznica = wieksza.wspolczynniki.Length - mniejsza.wspolczynniki.Length;
             int[] tab = new int[wieksza.wspolczynniki.Length];
 
             for (int i = 0; i < wieksza.wspolczynniki.Length; i++)
             {
-                if (i <= roznica - 1)
-                    tab[i] = wieksza[i] + 0;
+                if (i < mniejsza.wspolczynniki.Length)
+                    tab[i] = wieksza[i] + mniejsza[i];
                 else
-                    tab[i] = wieksza[i] + mniejsza[i - roznica];
+                    tab[i] = wieksza[i] + 0;
             }
+            Array.Reverse(tab, 0, tab.Length);
             Wielomian w = new Wielomian(tab);
 
             return w;
@@ -209,19 +211,38 @@ namespace MyMath
 
         public static Wielomian operator -(Wielomian w1, Wielomian w2)
         {
-            Wielomian wieksza = w1.wspolczynniki.Length > w2.wspolczynniki.Length ? w1 : w2;
-            Wielomian mniejsza = w1.wspolczynniki.Length > w2.wspolczynniki.Length ? w2 : w1;
-            int roznica = wieksza.wspolczynniki.Length - mniejsza.wspolczynniki.Length;
-            int[] tab = new int[wieksza.wspolczynniki.Length];
+            int roznica = 0;
+            int[] tab = { 0 };
+            Wielomian w;
 
-            for (int i = 0; i < wieksza.wspolczynniki.Length; i++)
+            if (WybierzWiekszaTablice(w1, w2)[0] == w1)
             {
-                if (i <= roznica - 1)
-                    tab[i] = wieksza[i] - 0;
-                else
-                    tab[i] = wieksza[i] - mniejsza[i - roznica];
+                roznica = w1.wspolczynniki.Length - w2.wspolczynniki.Length;
+                tab = new int[w1.wspolczynniki.Length];
+
+                for (int i = 0; i < w1.wspolczynniki.Length; i++)
+                {
+                    if (i < w2.wspolczynniki.Length)
+                        tab[i] = w1[i] - w2[i];
+                    else
+                        tab[i] = w1[i] - 0;
+                }
             }
-            Wielomian w = new Wielomian(tab);
+            else
+            {
+                roznica = w2.wspolczynniki.Length - w1.wspolczynniki.Length;
+                tab = new int[w2.wspolczynniki.Length];
+
+                for (int i = 0; i < tab.Length; i++)
+                {
+                    if (i < w1.wspolczynniki.Length)
+                        tab[i] = w1[i] - w2[i];
+                    else
+                        tab[i] = 0 - w2[i];
+                }
+            }
+            Array.Reverse(tab, 0, tab.Length);
+            w = new Wielomian(tab);
 
             return w;
         }
@@ -230,5 +251,25 @@ namespace MyMath
         {
             get{ return wspolczynniki[wspolczynniki.Length - index - 1]; }
         }
-    }
+
+        public static Wielomian[] WybierzWiekszaTablice(Wielomian w1, Wielomian w2)
+        {
+            Wielomian[] tab = new Wielomian[2]; //wieksza tablica na pierwszym miejscu, mneijsza - na drugim
+
+
+            if (w1.wspolczynniki.Length >= w2.wspolczynniki.Length)
+            {
+                tab[0] = w1;
+                tab[1] = w2;
+            }
+            else
+            {
+                tab[0] = w2;
+                tab[1] = w1;
+            }
+
+            return tab;
+        }
+
+        }
 }
