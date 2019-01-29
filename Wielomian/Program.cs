@@ -1,7 +1,7 @@
 ﻿using System;
 using MyMath;
 using W = MyMath.Wielomian; //alias dla nazwy klasy Wielomian
-//using MyExtensions;
+using MyExtensions;
 using System.Collections.Generic;
 
 namespace z2_1_wielomian
@@ -88,17 +88,17 @@ namespace z2_1_wielomian
             Console.WriteLine($"{10} - ({w21}) = {10 - w21}");
 
             Console.WriteLine("== Konwersje ==");
-            /*
+            
             Wielomian w = 10;  //konwersja domyślna z int na Wielomian
 
             int[] t = (int[])(new W(1));
-            Console.WriteLine($"int[{t.Length}]: [{String.Join(',', t)}]");
+            Console.WriteLine($"int[{t.Length}]: [{String.Join(",", t)}]");
 
             int y = (int)(new W(1));
             Console.WriteLine($"int y: {y}");
 
             int[] t11 = (int[])(new W(1, 2));
-            Console.WriteLine($"int[{t11.Length}]: [{String.Join(',', t11)}]");
+            Console.WriteLine($"int[{t11.Length}]: [{String.Join(",", t11)}]");
 
             try
             {
@@ -108,7 +108,7 @@ namespace z2_1_wielomian
             {
                 Console.WriteLine($"InvalidCastException: {e.Message}");
             }
-            */
+            
             Console.WriteLine("== indexer ==");
 
             Console.WriteLine("W(1,2,3): ");
@@ -130,7 +130,7 @@ namespace z2_1_wielomian
 
             Console.WriteLine("== Metoda rozszerzająca Eval ==");
 
-            //Console.WriteLine($"Metoda rozszerzająca: new W(1,2,1).Eval(2.0) = {new W(1, 2, 1).Eval(2.0)}");
+            Console.WriteLine($"Metoda rozszerzająca: new W(1,2,1).Eval(2.0) = {new W(1, 2, 1).Eval(2.0)}");
 
             Console.WriteLine("== lista wielomianów, sortowanie ==");
 

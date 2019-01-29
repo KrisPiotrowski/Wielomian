@@ -21,6 +21,20 @@ namespace MyMath
             return new Wielomian(m);
         }
 
+        public static explicit operator int(Wielomian m)
+        {
+            if (m.wspolczynniki.Length > 1)
+                throw new InvalidCastException("wielomian nie jest stopnia zerowego");
+            return m.wspolczynniki[0];
+        }
+
+        public static explicit operator int[](Wielomian m)
+        {
+            int[] tab = (int[]) m.wspolczynniki.Clone();
+            Array.Reverse(tab);
+            return tab;
+        }
+
         public int Current
         {
             get { return wspolczynniki[pozycja]; }
@@ -203,7 +217,7 @@ namespace MyMath
                 else
                     tab[i] = wieksza[i] + 0;
             }
-            Array.Reverse(tab, 0, tab.Length);
+            Array.Reverse(tab);
             Wielomian w = new Wielomian(tab);
 
             return w;
@@ -241,7 +255,7 @@ namespace MyMath
                         tab[i] = 0 - w2[i];
                 }
             }
-            Array.Reverse(tab, 0, tab.Length);
+            Array.Reverse(tab);
             w = new Wielomian(tab);
 
             return w;
