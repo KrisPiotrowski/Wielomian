@@ -125,7 +125,7 @@ namespace z2_1_wielomian
             Console.WriteLine("== konstruktor dla string ==");
 
             //Wielomian wS = Wielomian.Parse("3x^2 - 2x^1 + 1");
-           // Console.WriteLine("Wielomian.Parse(\"3x^2 - 2x^1 + 1\") = {0}", wS);
+            //Console.WriteLine("Wielomian.Parse(\"3x^2 - 2x^1 + 1\") = {0}", wS);
             //Console.WriteLine($"W(3, -2, 1) == Wielomian.Parse(\"3x^2 - 2x^1 + 1\"): {new Wielomian(3, -2, 1) == wS}");
 
             Console.WriteLine("== Metoda rozszerzająca Eval ==");
@@ -145,7 +145,7 @@ namespace z2_1_wielomian
             Console.WriteLine("- lista przed sortowaniem -");
             lista.ForEach(ww => Console.WriteLine(ww));
 
-           // lista.Sort(MyMathExtensions.WielomianPoprzedzaComparison);
+            lista.Sort(MyMathExtensions.WielomianPoprzedzaComparison);
             Console.WriteLine("- lista po sortowaniu -");
             lista.ForEach(ww => Console.WriteLine(ww));
 

@@ -270,7 +270,6 @@ namespace MyMath
         {
             Wielomian[] tab = new Wielomian[2]; //wieksza tablica na pierwszym miejscu, mneijsza - na drugim
 
-
             if (w1.wspolczynniki.Length >= w2.wspolczynniki.Length)
             {
                 tab[0] = w1;
@@ -284,6 +283,5 @@ namespace MyMath
 
             return tab;
         }
-
-        }
+    }
 }
